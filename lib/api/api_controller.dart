@@ -22,12 +22,15 @@ Future<Map?> getCurrentWeather(String city) async {
 ///Get forecast for the next three days
 Future<List?> getForecast(String city) async {
   String query =
-      "$apiPrefix/data/2.5/forecast?q=$city&lang=ru&cnt=32&appid=$apiKey&units=metric";
+      "$apiPrefix/data/2.5/forecast?q=$city&lang=ru&cnt=24&appid=$apiKey&units=metric";
+  // API выдаёт прогноз за следующие x раз с промежутками в 3 часа
+  // берём x = 24 т.к. 3*24 = 72 => 3 суток.
   try {
     final response = await dio.get(query);
     final result = List.empty(growable: true);
     if (response.data["cod"] == "200") {
-      for (var i = 8; i < response.data["cnt"]; i += 8) {
+      // i=7 чтобы пропустить первый день прогноза. Шаг = 8 т.к. 3*8 = 24 => переходим на след. сутки
+      for (var i = 7; i < response.data["cnt"]; i += 8) {
         result.add(Map.from(response.data['list'][i]));
       }
       return result;
