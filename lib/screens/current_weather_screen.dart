@@ -12,6 +12,9 @@ class CurrentWeatherScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // В идеале, здесь и в forecast_screen я бы реализовал через класс модели с помощью freezed.
+    // Но автоматическая десериализация json'а провоцирует кучу ошибок из-за класса _JsonMap,
+    // потому решил оставить текущий вариант.
     final main = currentWeather["main"];
     final weather = currentWeather["weather"][0];
     final wind = currentWeather["wind"];
