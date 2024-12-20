@@ -15,11 +15,7 @@ class CurrentWeatherScreen extends StatelessWidget {
     final main = currentWeather["main"];
     final weather = currentWeather["weather"][0];
     final wind = currentWeather["wind"];
-    //Городнейм
-    // темпа
-    // облачность
-    // влажность
-    // осадки?
+
     return SafeArea(
       child: Scaffold(
         body: Row(

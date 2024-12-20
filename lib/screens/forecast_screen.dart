@@ -12,11 +12,6 @@ class ForecastScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //Городнейм
-    // темпа
-    // облачность
-    // влажность
-    // осадки?
     return SafeArea(
       child: Scaffold(
         body: Row(
@@ -39,17 +34,20 @@ class ForecastScreen extends StatelessWidget {
                 Row(
                   children: [
                     for (var i = 0; i < forecast.length; i++)
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(forecast[i]["dt_txt"]),
-                          WeatherCard(
-                              temperature: forecast[i]["main"]["temp"],
-                              feelsLike: forecast[i]["main"]["feels_like"],
-                              weatherDescription: forecast[i]["weather"][0]
-                                  ["description"],
-                              windSpeed: forecast[i]["wind"]["speed"]),
-                        ],
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(forecast[i]["dt_txt"]),
+                            WeatherCard(
+                                temperature: forecast[i]["main"]["temp"],
+                                feelsLike: forecast[i]["main"]["feels_like"],
+                                weatherDescription: forecast[i]["weather"][0]
+                                    ["description"],
+                                windSpeed: forecast[i]["wind"]["speed"]),
+                          ],
+                        ),
                       ),
                   ],
                 ),

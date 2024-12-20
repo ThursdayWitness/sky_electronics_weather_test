@@ -21,7 +21,7 @@ class WeatherCard extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Padding(
-          padding: const EdgeInsets.all(4.0),
+          padding: const EdgeInsets.all(8.0),
           child: Text(
             "🌡$temperature°C",
             style: titleStyle,
