@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sky_electronics_weather_test/api/api_controller.dart';
-import 'package:sky_electronics_weather_test/screens/current_weather_screen.dart';
-import 'package:sky_electronics_weather_test/screens/forecast_screen.dart';
 
 class CityInputScreen extends StatelessWidget {
   const CityInputScreen({super.key});
@@ -26,7 +25,6 @@ class CityInputScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final navigator = Navigator.of(context);
     final cityNameController = TextEditingController();
     return SafeArea(
       child: Scaffold(
@@ -51,22 +49,11 @@ class CityInputScreen extends StatelessWidget {
                   onPressed: () async {
                     final currentWeather =
                         await getCurrentWeather(cityNameController.text);
-                    if (currentWeather != null) {
-                      //TODO: change navigation to GoRouter:
-                      //1: add model class for Forecast
-                      //2: jsonOperations on model class
-                      //3: pass json in params, decode in page
-                      //OR use provider
-                      // context.go('/');
-                      navigator.push(
-                        MaterialPageRoute(
-                          builder: (context) => CurrentWeatherScreen(
-                              cityName: cityNameController.text,
-                              currentWeather: currentWeather),
-                        ),
-                      );
-                    } else {
-                      if (context.mounted) {
+                    if (context.mounted) {
+                      if (currentWeather != null) {
+                        context.push('/current_weather',
+                            extra: [cityNameController.text, currentWeather]);
+                      } else {
                         showErrorDialog(context);
                       }
                     }
@@ -79,17 +66,11 @@ class CityInputScreen extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () async {
                     final forecast = await getForecast(cityNameController.text);
-                    if (forecast != null) {
-                      // context.go('/');
-                      navigator.push(
-                        MaterialPageRoute(
-                          builder: (context) => ForecastScreen(
-                              cityName: cityNameController.text,
-                              forecast: forecast),
-                        ),
-                      );
-                    } else {
-                      if (context.mounted) {
+                    if (context.mounted) {
+                      if (forecast != null) {
+                        context.push('/forecast',
+                            extra: [cityNameController.text, forecast]);
+                      } else {
                         showErrorDialog(context);
                       }
                     }
