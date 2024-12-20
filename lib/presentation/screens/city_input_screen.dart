@@ -1,27 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sky_electronics_weather_test/api/api_controller.dart';
+import 'package:sky_electronics_weather_test/presentation/error_dialog.dart';
 
 class CityInputScreen extends StatelessWidget {
   const CityInputScreen({super.key});
-
-  void showErrorDialog(BuildContext context) {
-    showDialog(
-        context: context,
-        builder: (context) => Center(
-              child: AlertDialog(
-                title: const Text("Ошибка"),
-                content: const Text(
-                    "Не удалось получить погоду для выбранного города."),
-                actions: [
-                  ElevatedButton(
-                    onPressed: () => Navigator.of(context).pop(),
-                    child: const Text("Ок"),
-                  ),
-                ],
-              ),
-            ));
-  }
 
   @override
   Widget build(BuildContext context) {

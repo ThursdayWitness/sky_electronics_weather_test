@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:sky_electronics_weather_test/api/api_controller.dart';
+import 'package:sky_electronics_weather_test/presentation/error_dialog.dart';
 import 'package:sky_electronics_weather_test/presentation/text_styles.dart';
 import 'package:sky_electronics_weather_test/presentation/weather_card.dart';
 
@@ -42,7 +44,20 @@ class CurrentWeatherScreen extends StatelessWidget {
                     temperature: main["temp"],
                     feelsLike: main["feels_like"],
                     weatherDescription: weather["description"],
-                    windSpeed: wind["speed"])
+                    windSpeed: wind["speed"]),
+                ElevatedButton(
+                    onPressed: () async {
+                      final forecast = await getForecast(cityName);
+                      if (context.mounted) {
+                        if (forecast != null) {
+                          context
+                              .push('/forecast', extra: [cityName, forecast]);
+                        } else {
+                          showErrorDialog(context);
+                        }
+                      }
+                    },
+                    child: const Text("Узнать прогноз на следующие 3 дня"))
               ],
             ),
           ],

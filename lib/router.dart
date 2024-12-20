@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sky_electronics_weather_test/screens/city_input_screen.dart';
-import 'package:sky_electronics_weather_test/screens/current_weather_screen.dart';
-import 'package:sky_electronics_weather_test/screens/forecast_screen.dart';
+import 'package:sky_electronics_weather_test/presentation/screens/city_input_screen.dart';
+import 'package:sky_electronics_weather_test/presentation/screens/forecast_screen.dart';
+
+import 'presentation/screens/current_weather_screen.dart';
 
 final router = GoRouter(
   routes: [
