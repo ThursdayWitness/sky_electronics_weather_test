@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sky_electronics_weather_test/utils/string_extensions.dart';
 
 class WeatherCard extends StatelessWidget {
   final double temperature;

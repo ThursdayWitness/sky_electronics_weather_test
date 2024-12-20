@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:sky_electronics_weather_test/api_key.dart';
+import 'package:sky_electronics_weather_test/api/api_key.dart';
 
 final dio = Dio();
 const apiPrefix = "https://api.openweathermap.org";

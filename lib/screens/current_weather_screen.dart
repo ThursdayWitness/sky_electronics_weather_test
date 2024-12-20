@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sky_electronics_weather_test/weather_card.dart';
+import 'package:sky_electronics_weather_test/presentation/text_styles.dart';
+import 'package:sky_electronics_weather_test/presentation/weather_card.dart';
 
 class CurrentWeatherScreen extends StatelessWidget {
   final String cityName;
