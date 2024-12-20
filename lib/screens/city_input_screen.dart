@@ -32,64 +32,70 @@ class CityInputScreen extends StatelessWidget {
       child: Scaffold(
         body: Center(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Row(
-                children: [
-                  Flexible(
-                    child: TextField(
-                      controller: cityNameController,
-                      // decoration:
-                      //     const InputDecoration(hintText: "Узнать погоду на сегодня:"),
-                    ),
+              Container(
+                padding: const EdgeInsets.all(4.0),
+                width: MediaQuery.of(context).size.width / 3,
+                child: TextField(
+                  controller: cityNameController,
+                  decoration: const InputDecoration(
+                    hintText: "Город",
+                    hintStyle: TextStyle(color: Colors.grey),
                   ),
-                  ElevatedButton(
-                    onPressed: () async {
-                      final currentWeather =
-                          await getCurrentWeather(cityNameController.text);
-                      if (currentWeather != null) {
-                        //TODO: change navigation to GoRouter:
-                        //1: add model class for Forecast
-                        //2: jsonOperations on model class
-                        //3: pass json in params, decode in page
-                        //OR use provider
-                        // context.go('/');
-                        navigator.push(
-                          MaterialPageRoute(
-                            builder: (context) => CurrentWeatherScreen(
-                                cityName: cityNameController.text,
-                                currentWeather: currentWeather),
-                          ),
-                        );
-                      } else {
-                        if (context.mounted) {
-                          showErrorDialog(context);
-                        }
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ElevatedButton(
+                  onPressed: () async {
+                    final currentWeather =
+                        await getCurrentWeather(cityNameController.text);
+                    if (currentWeather != null) {
+                      //TODO: change navigation to GoRouter:
+                      //1: add model class for Forecast
+                      //2: jsonOperations on model class
+                      //3: pass json in params, decode in page
+                      //OR use provider
+                      // context.go('/');
+                      navigator.push(
+                        MaterialPageRoute(
+                          builder: (context) => CurrentWeatherScreen(
+                              cityName: cityNameController.text,
+                              currentWeather: currentWeather),
+                        ),
+                      );
+                    } else {
+                      if (context.mounted) {
+                        showErrorDialog(context);
                       }
-                    },
-                    child: const Text("Узнать погоду на сегодня"),
-                  ),
-                  ElevatedButton(
-                    onPressed: () async {
-                      final forecast =
-                          await getForecast(cityNameController.text);
-                      if (forecast != null) {
-                        // context.go('/');
-                        navigator.push(
-                          MaterialPageRoute(
-                            builder: (context) => ForecastScreen(
-                                cityName: cityNameController.text,
-                                forecast: forecast),
-                          ),
-                        );
-                      } else {
-                        if (context.mounted) {
-                          showErrorDialog(context);
-                        }
+                    }
+                  },
+                  child: const Text("Узнать погоду на сегодня"),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ElevatedButton(
+                  onPressed: () async {
+                    final forecast = await getForecast(cityNameController.text);
+                    if (forecast != null) {
+                      // context.go('/');
+                      navigator.push(
+                        MaterialPageRoute(
+                          builder: (context) => ForecastScreen(
+                              cityName: cityNameController.text,
+                              forecast: forecast),
+                        ),
+                      );
+                    } else {
+                      if (context.mounted) {
+                        showErrorDialog(context);
                       }
-                    },
-                    child: const Text("Прогноз на ближайшие 3 дня"),
-                  ),
-                ],
+                    }
+                  },
+                  child: const Text("Прогноз на ближайшие 3 дня"),
+                ),
               ),
             ],
           ),

@@ -20,26 +20,39 @@ class ForecastScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             IconButton(
               onPressed: () => context.pop(),
               icon: const Icon(Icons.arrow_back_ios_rounded),
             ),
             Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Прогноз погоды в городе $cityName:"),
-                for (var i = 0; i < forecast.length; i++)
-                  Column(
-                    children: [
-                      Text(forecast[i]["dt_txt"]),
-                      WeatherCard(
-                          temperature: forecast[i]["main"]["temp"],
-                          feelsLike: forecast[i]["main"]["feels_like"],
-                          weatherDescription: forecast[i]["weather"][0]
-                              ["description"],
-                          windSpeed: forecast[i]["wind"]["speed"]),
-                    ],
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "Прогноз погоды в городе $cityName:",
+                    style: titleStyle,
                   ),
+                ),
+                Row(
+                  children: [
+                    for (var i = 0; i < forecast.length; i++)
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(forecast[i]["dt_txt"]),
+                          WeatherCard(
+                              temperature: forecast[i]["main"]["temp"],
+                              feelsLike: forecast[i]["main"]["feels_like"],
+                              weatherDescription: forecast[i]["weather"][0]
+                                  ["description"],
+                              windSpeed: forecast[i]["wind"]["speed"]),
+                        ],
+                      ),
+                  ],
+                ),
               ],
             ),
           ],

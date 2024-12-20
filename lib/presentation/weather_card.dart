@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sky_electronics_weather_test/presentation/text_styles.dart';
 import 'package:sky_electronics_weather_test/utils/string_extensions.dart';
 
 class WeatherCard extends StatelessWidget {
@@ -17,30 +18,29 @@ class WeatherCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Row(
-          children: [
-            const Text("🌡 Температура:"),
-            Text("$temperature°C"),
-          ],
+        Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: Text(
+            "🌡$temperature°C",
+            style: titleStyle,
+          ),
         ),
-        Row(
-          children: [
-            const Text("Ощущается как:"),
-            Text("$feelsLike°C"),
-          ],
+        Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: Text(
+            "Ощущается как: $feelsLike°C",
+            style: subtitleStyle,
+          ),
         ),
-        Row(
-          children: [
-            // Text("${weather["icon"]}"),
-            Text(weatherDescription),
-          ],
+        Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: Text(weatherDescription.capitalize()),
         ),
-        Row(
-          children: [
-            const Text("༄ Ветер:"),
-            Text("$windSpeedм/с"),
-          ],
+        Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: Text("༄ Ветер: $windSpeedм/с"),
         ),
       ],
     );

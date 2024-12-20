@@ -23,14 +23,22 @@ class CurrentWeatherScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             IconButton(
               onPressed: () => context.pop(),
               icon: const Icon(Icons.arrow_back_ios_rounded),
             ),
             Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Текущая погода в городе $cityName:"),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "Текущая погода в городе $cityName:",
+                    style: titleStyle,
+                  ),
+                ),
                 WeatherCard(
                     temperature: main["temp"],
                     feelsLike: main["feels_like"],
