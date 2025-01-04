@@ -3,12 +3,24 @@ import 'package:go_router/go_router.dart';
 import 'package:sky_electronics_weather_test/api/api_controller.dart';
 import 'package:sky_electronics_weather_test/presentation/error_dialog.dart';
 
-class CityInputScreen extends StatelessWidget {
+class CityInputScreen extends StatefulWidget {
   const CityInputScreen({super.key});
 
   @override
+  State<CityInputScreen> createState() => _CityInputScreenState();
+}
+
+class _CityInputScreenState extends State<CityInputScreen> {
+  final cityNameController = TextEditingController();
+
+  @override
+  void dispose() {
+    cityNameController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final cityNameController = TextEditingController();
     return SafeArea(
       child: Scaffold(
         body: Center(
